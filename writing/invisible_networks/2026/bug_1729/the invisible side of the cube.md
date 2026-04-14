@@ -11,7 +11,7 @@ labels:
 ---
 # Summary
 
-Multiple user accounts appear post at the exact same millisecond with no obvious connection. 
+Multiple user accounts post at the exact same millisecond with no obvious connection. 
 
 # Impact
 
