@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bug # 1729 – Platform Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:        #0052CC;
+      --blue-dark:   #0747A6;
+      --blue-light:  #DEEBFF;
+      --nav-bg:      #0747A6;
+      --sidebar-bg:  #F4F5F7;
+      --border:      #DFE1E6;
+      --border-mid:  #C1C7D0;
+      --text:        #172B4D;
+      --text-mid:    #42526E;
+      --text-dim:    #5E6C84;
+      --text-faint:  #97A0AF;
+      --sidebar-w:   232px;
+      --nav-h:       56px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      background: var(--nav-bg);
+      display: flex; align-items: center;
+      padding: 0 16px; gap: 4px;
+    }
+
+    .topnav-logo {
+      display: flex; align-items: center; gap: 8px;
+      color: #fff; font-weight: 600; font-size: 15px;
+      letter-spacing: -0.2px; margin-right: 12px;
+      text-decoration: none;
+    }
+
+    .topnav-logo-mark {
+      width: 26px; height: 26px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #fff;
+    }
+
+    .topnav-link {
+      color: rgba(255,255,255,0.82);
+      font-size: 13.5px; padding: 6px 10px; border-radius: 3px;
+      transition: background 0.12s;
+    }
+    .topnav-link:hover { background: rgba(255,255,255,0.14); color: #fff; text-decoration: none; }
+
+    .topnav-search {
+      margin-left: auto;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 3px;
+      padding: 6px 12px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      width: 196px;
+    }
+
+    .topnav-avatar {
+      width: 30px; height: 30px;
+      background: #B3D4FF;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600;
+      color: var(--blue-dark);
+      margin-left: 10px; flex-shrink: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      margin-top: var(--nav-h);
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: var(--nav-h); bottom: 0;
+      overflow-y: auto;
+      padding: 16px 0 32px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-space {
+      padding: 0 14px 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .sidebar-space-eyebrow {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      color: var(--text-faint); margin-bottom: 3px;
+    }
+    .sidebar-space-name {
+      font-size: 13.5px; font-weight: 600; color: var(--text);
+    }
+
+    .sidebar-section { padding: 8px 0; }
+
+    .sidebar-section-label {
+      font-size: 10.5px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 2px 14px 4px;
+    }
+
+    .sidebar-link {
+      display: block;
+      padding: 5px 14px;
+      font-size: 13px;
+      color: var(--text-dim);
+      border-left: 2px solid transparent;
+      transition: all 0.1s;
+    }
+    .sidebar-link:hover { background: rgba(0,82,204,0.06); color: var(--text); text-decoration: none; }
+    .sidebar-link.active {
+      background: var(--blue-light);
+      color: var(--blue);
+      border-left-color: var(--blue);
+      font-weight: 500;
+    }
+    .sidebar-link.sub { padding-left: 26px; }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      padding: 28px 52px 72px;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .breadcrumb a { color: var(--text-dim); }
+    .breadcrumb a:hover { color: var(--blue); }
+    .breadcrumb-sep { color: var(--text-faint); font-size: 10px; }
+    .breadcrumb-current { color: var(--text); }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      font-size: 26px; font-weight: 600;
+      letter-spacing: -0.4px; line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    /* ── METADATA ── */
+    .metadata {
+      display: flex; flex-wrap: wrap;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      margin-bottom: 24px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .meta-row {
+      display: flex; align-items: baseline;
+      gap: 6px; width: 100%; padding: 2px 0;
+    }
+
+    .meta-key {
+      font-weight: 500; color: var(--text-faint);
+      min-width: 100px;
+    }
+
+    .meta-val { color: var(--text-mid); }
+    .meta-val a { color: var(--blue); }
+
+    /* ── LABELS ── */
+    .labels { display: flex; gap: 5px; flex-wrap: wrap; }
+
+    .label {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-size: 11px; font-weight: 500;
+      border: 1px solid transparent;
+      letter-spacing: 0.01em;
+    }
+
+    [data-label="under-investigation"] {
+      background: #FFFAE6; color: #7A5800; border-color: #F4AC00;
+    }
+    [data-label="p3"] {
+      background: #F4F5F7; color: var(--text-mid); border-color: var(--border-mid);
+    }
+    [data-label="duplicate-content"] {
+      background: var(--blue-light); color: var(--blue); border-color: #4C9AFF;
+    }
+    [data-label="updated"] {
+      background: #E3FCEF; color: #006644; border-color: #57D9A3;
+    }
+
+    /* ── PAGE ACTIONS ── */
+    .page-actions {
+      display: flex; gap: 6px;
+      margin-bottom: 24px;
+    }
+    .action-btn {
+      padding: 4px 10px;
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      background: #fff;
+      font-size: 12px; font-family: 'IBM Plex Sans', sans-serif;
+      color: var(--text-dim); cursor: pointer;
+      transition: all 0.1s;
+    }
+    .action-btn:hover { background: var(--sidebar-bg); border-color: var(--text-dim); }
+
+    /* ── CONTENT ── */
+    .content h1 {
+      font-size: 17px; font-weight: 600;
+      color: var(--text);
+      margin: 28px 0 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .content h1:first-child { margin-top: 0; }
+
+    .content p { margin-bottom: 10px; line-height: 1.65; }
+
+    .content ul, .content ol {
+      margin: 6px 0 10px 20px;
+    }
+    .content li { margin-bottom: 3px; line-height: 1.6; }
+
+    .content code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      background: var(--sidebar-bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: var(--text);
+    }
+
+    .content strong { font-weight: 600; }
+    .content em { font-style: italic; }
+
+    /* ── LINKED TICKETS ── */
+    .linked-tickets {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .linked-tickets-title {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+    .ticket-ref {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text-dim);
+      padding: 4px 0; margin-right: 16px;
+    }
+    .ticket-ref-id {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; color: var(--blue);
+    }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 11.5px;
+      color: var(--text-faint);
+      display: flex; gap: 16px; align-items: center;
+    }
+    .page-footer a { color: var(--text-faint); }
+    .page-footer a:hover { color: var(--text-dim); }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <a class="topnav-logo" href="#">
+      <span class="topnav-logo-mark">PE</span>
+      Confab
+    </a>
+    <a class="topnav-link" href="#">Spaces</a>
+    <a class="topnav-link" href="#">People</a>
+    <a class="topnav-link" href="#">Apps</a>
+    <input class="topnav-search" type="text" placeholder="Search…" readonly>
+    <div class="topnav-avatar">A</div>
+  </nav>
+ 
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-space">
+        <div class="sidebar-space-eyebrow">Space</div>
+        <div class="sidebar-space-name"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Incidents</div>
+        <a class="sidebar-link sub" href="#">Active Incidents</a>
+        <a class="sidebar-link sub active" href="#">Bug # 1729</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Reference</div>
+        <a class="sidebar-link sub" href="#">Postmortems</a>
+        <a class="sidebar-link sub" href="#">On-Call Runbooks</a>
+        <a class="sidebar-link sub" href="#">Architecture Docs</a>
+        <a class="sidebar-link sub" href="#">Database Schema</a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Teams</div>
+        <a class="sidebar-link sub" href="#">Backend</a>
+        <a class="sidebar-link sub" href="#">Infrastructure</a>
+        <a class="sidebar-link sub" href="#">Trust &amp; Safety</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <div class="breadcrumb">
+        <a href="#"></a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#">Incidents</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Bug # 1729</span>
+      </div>
+
+      <h1 class="page-title">Bug # 1729</h1>
+
+      <div class="metadata">
+        <div class="meta-row">
+          <span class="meta-key">Created by</span>
+          <span class="meta-val"><a href="#">atonal440</a></span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Created</span>
+          <span class="meta-val">2026-04-08T03:51:29Z</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-key">Labels</span>
+          <span class="meta-val">
+            <span class="labels">
+              <span class="label" data-label="under-investigation">under-investigation</span>
+              <span class="label" data-label="p3">p3</span>
+              <span class="label" data-label="duplicate-content">duplicate-content</span>
+              <span class="label" data-label="updated">updated</span>
+
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="page-actions">
+        <button class="action-btn">Edit</button>
+        <button class="action-btn">Watch</button>
+        <button class="action-btn">Share</button>
+        <button class="action-btn">···</button>
+      </div>
+
+      <div class="content">
+        <h1 id="summary">Summary</h1>
+        <p>Multiple user accounts appear post at the exact same
+        millisecond with no obvious connection.</p>
+        <h1 id="impact">Impact</h1>
+        <p>3,966 users across seven occurences</p>
+        <h1 id="steps-to-reproduce">Steps to Reproduce</h1>
+        <p>Unknown</p>
+        <h1 id="observed-behavior">Observed Behavior</h1>
+        <p>415 user accounts appear to have posted at exactly
+        2026-04-07T14:23:11.347Z. In and of itself this would not be too
+        remarkable: a busy millisecond, but we can handle it. This
+        happened again at 2026-04-07T22:08:44.891Z, this time with 533
+        user accounts (no overlap with the original list.) This is when
+        I noticed the pattern, just a couple of weird spikes in the
+        database graph, with no corresponding change in network traffic.
+        I went and looked at the http proxy logs for those windows, and
+        there’s nothing there. Some of these accounts are posting
+        regularly but none of them made any requests within 300ms on
+        each side of the incidents.</p>
+        <p>The posts themselves look mostly normal, broad mix of
+        languages and content with no particular trends. The only
+        interesting outlier is a single post with a timestamp 1ms later
+        than the first incident, id p7xK2mQ9, that reads “It worked!
+        maybe”</p>
+        <p><strong>UPDATE:</strong></p>
+        <p>Several more occurrences, I’ll keep track of them here.</p>
+        <p><strong>2026-04-09T11:17:03.023Z</strong> - 512 user
+        accounts.</p>
+        <p><strong>2026-04-10T08:42:57.614Z</strong> - 677. One delete
+        in this batch: p7xK2mQ9, that weird post from the first one.</p>
+        <p><strong>2026-04-10T19:04:18.758Z</strong> - 698. I checked
+        the sequence_ids in the database for these posts and they’re all
+        way ahead of the posts before or after. I’d change them, but
+        they’re so far ahead it won’t be a problem for a long while:
+        I’ll just leave it as evidence.</p>
+        <p><strong>2026-04-12T00:33:52.102Z</strong> - 502. One of our
+        app servers tried to connect to the db during this millisecond,
+        only one. It got back a <code>max_connections_exceeded</code>
+        error. It retried a moment later and everything was fine.</p>
+        <p><strong>2026-04-12T16:55:06.439Z</strong> - 629. I have
+        absolutely no clue what is causing this. We really should have
+        gone with mysql.</p>
+        <p>The overall trend is upwards, but slow enough that this isn’t
+        a resource problem for a while yet. At least it’s a nice boost
+        to our monthly active user counts.</p>
+        <h1 id="expected-behavior">Expected Behavior</h1>
+        <p>Posts written to the database are associated with http
+        traffic logged by the proxy. Timestamps are spread out by
+        latency and queueing and don’t cluster on a single
+        millisecond.</p>
+      </div>
+
+      <div class="linked-tickets">
+        <div class="linked-tickets-title">Linked</div>
+        <span class="ticket-ref"><span class="ticket-ref-id">BUG-122310</span> similar millisecond clustering (closed: cannot reproduce)</span>
+        <span class="ticket-ref"><span class="ticket-ref-id">SUP-88431</span> user reports harassment (closed: unable to reproduce)</span>
+      </div>
+
+      <div class="page-footer">
+        <span>Platform Engineering</span>
+        <a href="#">Give feedback</a>
+        <a href="#">Request review</a>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
