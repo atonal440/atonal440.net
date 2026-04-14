@@ -1,1 +1,1 @@
-The repo for the prsonal site of Vee Loring 
+The repo for the personal site of Vee Loring 
