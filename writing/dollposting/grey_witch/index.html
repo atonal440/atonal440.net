@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the grey witch</title>
+  <meta name="description" content="the grey witch — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* the grey witch
+
+       Her power isn't destruction, it's de-intensification: sameness, flatness,
+       the collapse of everything hot into mundanity and irrelevance. So the
+       page is a mid-grey — not a light page, not a dark one, the middle, which
+       is where she leaves things. It is the only page in this series with no
+       gradient anywhere. Where she goes the sky stretches out flat.
+
+       The one moving part is chroma. Ink lightness is pinned at exactly one
+       value for the whole piece, so contrast never changes and nothing gets
+       harder to read; only the warmth drains out of it, paragraph by
+       paragraph, until the last one — the one that watches it happen — is
+       perfectly neutral. Nothing is destroyed. It just stops mattering.
+
+       The background never drains, because it never had to: the sky is hers
+       from the first sentence. Only the things still on the field have heat
+       left to lose. */
+
+    :root {
+      /* Deliberately the default interface face. The prose is grand and she
+         flattens grand things; a characterful serif would be arguing with the
+         story instead of losing to it. */
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+              Arial, sans-serif;
+
+      --sky:     #a6a6a6;
+      --horizon: #7c7c7c;
+
+      /* Ink: fixed lightness, fixed hue, chroma → 0. */
+      --ink-l: 0.30;
+      --ink-c: 0.055;
+      --ink-h: 52;
+
+      --lead: 1.55;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--sky); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: var(--sky);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Auto block margins centre the block when there's room and collapse to
+       zero when there isn't, so nothing is ever stranded above the scroll. */
+    .stack {
+      width: 100%;
+      margin-block: auto;
+      padding-bottom: clamp(1.25rem, 4.5vmin, 3.5rem);
+    }
+
+    .page {
+      font-size: clamp(1.02rem, 0.95rem + 0.34vmin, 1.15rem);
+      --pad: clamp(1.35rem, 0.8rem + 4vmin, 3rem);
+      width: 100%;
+      max-width: calc(46ch + 2 * var(--pad));
+      margin: 0 auto;
+      padding: clamp(3rem, 9vmin, 6rem) var(--pad) 0;
+    }
+
+    /* No hierarchy: the title is set exactly like the prose, one line of the
+       same size, weight and colour. Sameness is the whole of her method. */
+    h1, p {
+      font-size: 1em;
+      font-weight: 400;
+      /* Tighter leading than anything else in this series. Breathing itself
+         becomes an unbearable chore. */
+      line-height: var(--lead);
+      /* Gaps are exactly one line, so the vertical rhythm never varies. */
+      margin-bottom: calc(var(--lead) * 1em);
+
+      color: #2b2b2b; /* fallback for engines without oklch() */
+      color: oklch(var(--ink-l) calc(var(--ink-c) * (1 - var(--t, 1))) var(--ink-h));
+    }
+
+    h1 { margin-bottom: calc(var(--lead) * 2em); }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* An event horizon as gentle as a wave-smoothed beach. Everything above it
+       has already collapsed into a single flat line. */
+    .horizon {
+      border: 0;
+      height: 1px;
+      width: 100%;
+      background: var(--horizon);
+      margin-top: clamp(3rem, 9vmin, 6.5rem);
+    }
+
+    /* Below the horizon, at the page's one and only size. Colouring it as
+       marginalia rather than shrinking it keeps the no-hierarchy rule intact. */
+    .when {
+      padding-top: 0;   /* .page supplies the column; drop only its top pad */
+      margin-top: calc(var(--lead) * 1em);
+      color: var(--horizon);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stack">
+
+    <main class="page">
+
+      <!-- Lowercase "the": a capital is the only emphasis a page with no
+           hierarchy would have, so it read as an accent rather than a word. -->
+      <h1 style="--t: 0">the grey witch</h1>
+
+      <p style="--t: 0">War-bodies are terrible things, incomprehensibly destructive but no body formed of rage or hunger can stand against the grey witch. Where she goes the sky stretches out flat and grey and the air tastes stale. Breathing itself becomes an unbearable chore.</p>
+
+      <p style="--t: .4">The origins of her power are greatly disputed. Some think she&rsquo;s opened a tiny pinhole into gehenna, and brought a bit of the infinite sameness of that afterlife to our world.</p>
+
+      <p style="--t: .72">Others say that she&rsquo;s found a black hole so unbelievably massive that its event horizon is as gentle as a wave-smoothed beach, and offered it Gaia-knows-what in exchange for this power.</p>
+
+      <p style="--t: 1">All I know is what I saw: the sky clouding over like a cataract, the wind dying like a last breath, every hot and horrible thing on that field somehow dimming and collapsing into mundanity and irrelevance as she passed.</p>
+
+    </main>
+
+    <hr class="horizon">
+
+    <p class="when page">Vee Loring &middot; June 26, 2022</p>
+
+  </div>
+
+</body>
+</html>

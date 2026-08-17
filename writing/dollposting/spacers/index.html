@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎶 spacers have only got one ball 🎶</title>
+  <meta name="description" content="🎶 spacers have only got one ball 🎶 — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* 🎶 spacers have only got one ball 🎶
+
+       The piece is a song, so the page is a page from a songbook. The piece is
+       also about keeping soft precious things warm inside a shell while hard
+       vacuum does its worst outside — so the songbook page is a lit, rounded,
+       eggshell-colored card floating in the dark, glowing rose on one side and
+       blue on the other. Read it as pretty; read it as a flag if you know. */
+
+    :root {
+      --display: "Hoefler Text", Baskerville, "Palatino Linotype",
+                 "Book Antiqua", Garamond, serif;
+      --text:    "Hoefler Text", Baskerville, Georgia, "Times New Roman", serif;
+
+      --void:      #14101c;
+      --shell:     #f7f0e4;
+      --ink:       #383039;
+      --ink-soft:  #6d6068;
+      --rule:      #d8cbb7;
+      --rose:      #e8a7bc;
+      --rose-deep: #c4718d;
+      --sky:       #a7c6e8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--void); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh; /* so mobile browser chrome doesn't shove the card */
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      /* The floor matters: the shell has to keep a visible margin of dark
+         around it even on a phone, or it stops reading as a lit thing in
+         vacuum and starts reading as a page background. */
+      padding: clamp(1.1rem, 3vmin, 3rem);
+      /* A dozen faint stars, hand-placed. Not a starfield — the dark should
+         read as quiet and enormous, not busy. */
+      background-image:
+        radial-gradient(1.5px 1.5px at 11% 14%, #ffffff55, transparent 60%),
+        radial-gradient(1px 1px   at 24% 62%, #ffffff40, transparent 60%),
+        radial-gradient(1px 1px   at 8%  78%, #ffe9f240, transparent 60%),
+        radial-gradient(1.5px 1.5px at 33% 27%, #ffffff33, transparent 60%),
+        radial-gradient(1px 1px   at 46% 8%,  #e8f0ff45, transparent 60%),
+        radial-gradient(1px 1px   at 61% 88%, #ffffff38, transparent 60%),
+        radial-gradient(1.5px 1.5px at 74% 21%, #ffffff4a, transparent 60%),
+        radial-gradient(1px 1px   at 88% 44%, #ffe9f238, transparent 60%),
+        radial-gradient(1px 1px   at 92% 71%, #ffffff33, transparent 60%),
+        radial-gradient(1.5px 1.5px at 68% 57%, #e8f0ff30, transparent 60%),
+        radial-gradient(1px 1px   at 17% 41%, #ffffff2e, transparent 60%),
+        radial-gradient(1px 1px   at 55% 35%, #ffffff26, transparent 60%),
+        radial-gradient(120% 90% at 50% 50%, #1e1728 0%, var(--void) 70%);
+      font-family: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ── The shell ── */
+
+    main {
+      /* One size governs the whole shell. Padding, measure, ornament and type
+         are all derived from it, so the card grows and shrinks as a single
+         coordinated object rather than a fixed slab dropped in the middle.
+
+         vmin, not vw: scaling off width alone makes the card *taller* on a
+         short landscape window, which is precisely when vertical room is
+         scarcest. vmin lets the shell shrink for a squat window the same way
+         it does for a narrow one. */
+      font-size: clamp(0.97rem, 0.82rem + 0.62vmin, 1.18rem);
+
+      --pad-x: clamp(1.15rem, 0.6rem + 3.6vmin, 3rem);
+      --pad-y: clamp(1.7rem, 1rem + 4vmin, 3.4rem);
+      --aura:  clamp(30px, 5vmin, 54px);
+
+      /* Measure is pinned at ~58 characters at every scale: the card widens
+         only because the type got bigger, never past a comfortable line.
+         (47ch, not 58ch — `ch` is the width of "0", which in this face runs
+         about a quarter wider than the average lowercase letter.) */
+      width: 100%;
+      max-width: calc(47ch + 2 * var(--pad-x));
+
+      /* Auto block margins center the card when there's room and collapse to
+         zero when there isn't — unlike align-items:center, which would strand
+         the top of a tall card above the scroll origin on short viewports. */
+      margin-block: auto;
+
+      padding: var(--pad-y) var(--pad-x);
+      background: var(--shell);
+      border-radius: clamp(1rem, 3vmin, 2rem);
+      box-shadow:
+        /* The aura: rose to port, blue to starboard. The offsets have to be
+           big enough that the two colors don't overlap back into plain white. */
+        calc(-1 * var(--aura)) 6px 90px -30px rgba(232, 167, 188, 0.75),
+        var(--aura)            6px 90px -30px rgba(167, 198, 232, 0.75),
+        /* the shell's own lit edge, and its weight in the dark */
+        inset 0 1px 0 #ffffffcc,
+        0 28px 70px -24px rgba(0, 0, 0, 0.75);
+    }
+
+    /* ── Title ── */
+
+    h1 {
+      font-family: var(--display);
+      font-size: 1.72em;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.3;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    /* The emoji are the author's, kept — but dialed back to ornaments so the
+       line still reads as a title and not as a text message. */
+    h1 .note-emoji {
+      font-size: 0.5em;
+      font-style: normal;
+      vertical-align: 0.35em;
+      opacity: 0.7;
+      margin: 0 0.45em;
+    }
+
+    /* ── Staff ──
+       Five hairlines and a single quarter note. One note, because you only
+       have to save one. */
+
+    .staff {
+      position: relative;
+      width: 4.6em;
+      height: 17px; /* five hairlines at a 4px period — kept in px so the
+                       staff and its note stay crisp at every scale */
+      margin: 1.8em auto 2.2em;
+      background: repeating-linear-gradient(
+        to bottom, var(--rule) 0 1px, transparent 1px 4px);
+    }
+    .staff::before { /* note head */
+      content: "";
+      position: absolute;
+      left: calc(50% - 4px);
+      top: 5px;
+      width: 8px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rose-deep);
+      transform: rotate(-18deg);
+    }
+    .staff::after { /* stem */
+      content: "";
+      position: absolute;
+      left: calc(50% + 3px);
+      top: -6px;
+      width: 1.5px;
+      height: 13px;
+      border-radius: 1px;
+      background: var(--rose-deep);
+    }
+
+    /* ── Body ── */
+
+    p {
+      font-size: 1em;
+      line-height: 1.78;
+      color: var(--ink);
+      margin-bottom: 1.35em;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    .when {
+      margin-top: 2.1em;
+      text-align: center;
+      font-size: 0.78em;
+      letter-spacing: 0.09em;
+      color: var(--ink-soft);
+    }
+
+    .lede::first-letter {
+      float: left;
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 3.2em;
+      line-height: 0.8;
+      padding: 0.14em 0.14em 0 0;
+      color: var(--rose-deep);
+    }
+
+    /* No breakpoints: every size above is a clamp or an em, so the shell
+       scales continuously instead of snapping between two fixed layouts. */
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <h1>
+      <span class="note-emoji" aria-hidden="true">🎶</span>spacers have only got one ball<span class="note-emoji" aria-hidden="true">🎶</span>
+    </h1>
+
+    <div class="staff" aria-hidden="true"></div>
+
+    <p class="lede">The classic rude children's rhyme is only half right. Many of us don't have any balls (or ovaries) at all! Why leave your precious germline cells where they can be mutated into uselessness by solar radiation if you can store them safely in a lead freezer on the station?</p>
+
+    <p>There is also a community angle: asteroid populations are often at the lower end of long term viability, so there's no room for a freak shuttle accident to cut into the available gene pool. On these smaller or more remote stations, it's become a coming-of-age ritual, something that ties everyone to their community.</p>
+
+    <p>You only have to save one, but plenty of people just get both removed when they come of age and are ready for outside work; the vagaries of an endocrine system are another uncontrolled variable no one wants. Hormones are easy enough for any ship to make.</p>
+
+    <p class="when">Vee Loring &middot; March 4, 2023</p>
+
+  </main>
+
+</body>
+</html>

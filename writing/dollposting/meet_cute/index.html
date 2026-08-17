@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Cute</title>
+  <meta name="description" content="Meet Cute — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Meet Cute
+
+       A two-hander with no attributions, so the page has to cast it. One voice
+       is set big and hot pink and flush left; the other is small, olive, calm,
+       and indented. Nobody is labelled and nobody needs to be.
+
+       The joke is in the volume difference and its arc. The friend starts at a
+       shout and stays there — WHAT, Jeez, A DOLL — while the person actually
+       dating a combat medic never once changes size or register, because they
+       do not think any of this is remarkable. Then the last line drops to
+       almost nothing. That's the friend giving up on being scandalized and
+       landing the real question instead, and it only reads as a punchline if
+       the page has been loud right up until it isn't.
+
+       No chat bubbles, no phone chrome. It's plainly a conversation without
+       having to cosplay an app. */
+
+    :root {
+      --display: Futura, "Avenir Next", "Century Gothic", "Trebuchet MS",
+                 "Helvetica Neue", sans-serif;
+
+      --cream: #fbf4e8;
+      --shout: #c9146d;
+      --calm:  #4a5233;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--cream); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+      font-family: var(--display);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      font-size: clamp(1rem, 0.94rem + 0.32vmin, 1.12rem);
+      --pad: clamp(1.35rem, 0.8rem + 4vmin, 3rem);
+      width: 100%;
+      max-width: calc(46ch + 2 * var(--pad));
+      margin-block: auto;
+      margin-inline: auto;
+      padding: clamp(3rem, 9vmin, 6rem) var(--pad) clamp(4rem, 12vmin, 8rem);
+    }
+
+    p { margin-bottom: clamp(1.5rem, 4vmin, 2.5rem); }
+    p:last-child { margin-bottom: 0; }
+
+    /* Visually hidden, but present: the page opens on the shout by design, so
+       the only title it has was the <title> tag. Screen readers get a name now. */
+    .sr {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* The friend. Loud, blunt, flush left. --s carries the volume, as a fluid
+       length rather than an em multiple — at a fixed multiple, "motherfucker!"
+       is one unbreakable word wider than a phone. */
+    .them {
+      font-size: var(--s, 2rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      color: var(--shout);
+      margin-top: clamp(1.4rem, 4vmin, 2.4rem);
+      overflow-wrap: break-word;
+    }
+    .them:first-child { margin-top: 0; }
+
+    /* The one doing the dating. Never changes size, weight or colour once —
+       the whole performance is that none of this seems like a big deal. */
+    .me {
+      font-size: 1em;
+      line-height: 1.62;
+      color: var(--calm);
+      margin-left: clamp(1.25rem, 6vw, 4rem);
+    }
+
+    /* The drop. Same speaker, so the colour must not change — pink has meant
+       "the friend" for eight lines and a swap here would read as a third
+       voice. Only the volume comes down. */
+    .wry {
+      font-size: clamp(1.1rem, 1rem + 0.9vmin, 1.5rem);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0;
+      margin-top: clamp(3.2rem, 10vmin, 6rem);
+    }
+    .wry em { font-style: italic; }
+
+    /* Neither speaker's colour — this one isn't in the conversation. */
+    .when {
+      margin-top: clamp(3rem, 9vmin, 5.5rem);
+      font-size: 0.78em;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #7a6f60;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <h1 class="sr">Meet Cute</h1>
+
+    <p class="them" style="--s: clamp(1.9rem, 1rem + 5.2vmin, 3.3rem)">You&rsquo;re dating a WHAT now?</p>
+
+    <p class="me">Combat doll, yeah.</p>
+
+    <p class="them" style="--s: clamp(1.6rem, 0.9rem + 4vmin, 2.6rem)">How even&hellip;</p>
+
+    <p class="me">We met at that punk show last month, you know how we got separated but I texted you I was fine? Yeah, someone dislocated my arm in the pit, but it took me out back and fixed it.</p>
+
+    <p class="them" style="--s: clamp(1.5rem, 0.85rem + 3.7vmin, 2.4rem)">Jeez..</p>
+
+    <p class="me">We got to talking while I was coming down from it all and decided to go for all-night tacos; things just went from there. It&rsquo;s a medic but it doesn&rsquo;t just know how to treat pain, if you know what I mean&hellip;</p>
+
+    <p class="them" style="--s: clamp(2rem, 1rem + 5.6vmin, 3.6rem)">You&rsquo;re one crazy motherfucker! A doll!</p>
+
+    <p class="me">Yeah well it ships out with the 45th next month, gotta get while the getting&rsquo;s good! We should all hit the bars together sometime, it&rsquo;ll be fun! It&rsquo;s not as scary once you get to know it.</p>
+
+    <p class="them wry">Are you sure you don&rsquo;t just <em>like</em> how scary it is?</p>
+
+    <p class="when">Vee Loring &middot; December 4, 2022</p>
+
+  </div>
+
+</body>
+</html>

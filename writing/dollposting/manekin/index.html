@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANEKIN</title>
+  <meta name="description" content="MANEKIN — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* MANEKIN
+
+       Flat-pack catalog. Blue and yellow, a bold grotesk, a signage pictogram
+       with a dimension callout, and a spec block — the visual language of a
+       product listing, without imitating any actual brand's marks: no logo,
+       no wordmark, no price, no cart.
+
+       The page stays relentlessly cheerful the whole way down. It does not
+       darken when the prose does — feral dollpacks, abandonment psychosis, the
+       move-out piles. The deadpan is the joke, so the design plays it straight
+       and lets the copy do all the work. */
+
+    :root {
+      --sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans",
+              system-ui, sans-serif;
+
+      --blue:      #0058a3;
+      --blue-deep: #00396b;
+      --yellow:    #ffdb00;
+      --ink:       #111418;
+      --muted:     #5d6773;
+      --rule:      #dfe3e8;
+      --paper:     #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--paper); }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      padding: clamp(1.25rem, 4vmin, 3.5rem);
+    }
+
+    main {
+      max-width: 62rem;
+      margin: 0 auto;
+    }
+
+    /* ── Spread ──
+       Stacked on narrow screens, plate-beside-copy once there's room for a
+       catalog spread. A real layout change, so a breakpoint is honest here —
+       everything that's a matter of scale is a clamp instead. */
+
+    .spread {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.75rem, 4vmin, 3rem);
+    }
+
+    @media (min-width: 54rem) {
+      .spread {
+        grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+        gap: clamp(2.5rem, 5vmin, 4.5rem);
+        align-items: start;
+      }
+      .plate { position: sticky; top: clamp(1.25rem, 4vmin, 3.5rem); }
+    }
+
+    /* ── Plate ──
+       Black line on flat yellow. Square corners: nothing in a flat-pack
+       manual has a radius. */
+
+    .plate {
+      background: var(--yellow);
+      padding: clamp(1.5rem, 4vmin, 2.75rem);
+      display: flex;
+      justify-content: center;
+    }
+
+    .plate svg {
+      display: block;
+      height: clamp(15rem, 44vmin, 26rem);
+      width: auto;
+      max-width: 100%;
+    }
+
+    /* Every stroked part of the figure shares the solid fill's weight and
+       round terminals, so limbs and body read as one continuous silhouette. */
+    .plate .limb {
+      stroke: #0a1626;
+      stroke-linecap: round;
+      fill: none;
+    }
+
+    /* ── Copy ── */
+
+    .eyebrow {
+      font-size: clamp(0.72rem, 0.66rem + 0.3vw, 0.84rem);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.7rem;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 1.4rem + 5.4vw, 5.25rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 0.92;
+      color: var(--blue);
+    }
+
+    /* ── Specs ──
+       Every value here is stated outright in the story; nothing is invented,
+       and there's no article number, price, or availability. */
+
+    .specs {
+      margin: clamp(1.75rem, 4vmin, 2.5rem) 0;
+      border-top: 2px solid var(--ink);
+    }
+    .specs > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.25rem;
+      justify-content: space-between;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .specs dt {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .specs dd {
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: right;
+      color: var(--ink);
+    }
+
+    /* ── Prose ── */
+
+    .prose p {
+      font-size: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+      line-height: 1.68;
+      max-width: 40em;
+      margin-bottom: 1.15em;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* A date at the foot of a catalog page is native to the form — it reads
+       as a print code, not as a byline. */
+    .when {
+      margin-top: clamp(1.75rem, 4vmin, 2.5rem);
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* The opening line carries the product-description register, so it gets
+       the weight a catalog would give it. */
+    .prose p:first-child {
+      font-size: clamp(1.12rem, 1.02rem + 0.5vw, 1.32rem);
+      line-height: 1.55;
+      color: var(--blue-deep);
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="spread">
+
+      <figure class="plate">
+        <svg viewBox="0 0 185 418" role="img"
+             aria-label="Signage-style pictogram, seen from the side, of a figure
+                         lifting a crate above its head. A dimension line marks
+                         the figure itself as 120 centimetres tall.">
+          <!-- A safety-sign pictogram, not an articulated mannequin: one solid
+               silhouette, no joints, no seams, no hardware. The ball-jointed
+               drawing read as a product and argued against the prose, which is
+               busy insisting these are people. In profile, mid-lift, the
+               drawing says labor instead — which the text says outright — and
+               leaves the personhood alone.
+
+               Proportions are a child's, deliberately: the figure is 5.5 heads
+               tall rather than an adult's 7.5, with a short thick neck, a high
+               waist, short arms, and legs at roughly 43% of height. Signage has
+               no face and no detail, so proportion is the only register it can
+               play in — and it's the undertone the fiction is after.
+
+               There is no knockout gap anywhere. Every part shares one fill, so
+               overlaps merge instead of colliding: the raised arm simply passes
+               the head and the two become one mass, the way a profile actually
+               looks. The earlier yellow gap was slicing a crescent out of the
+               skull to avoid a problem that solid shapes don't have. -->
+
+          <!-- legs: stroked with round caps so the hips and ankles land soft -->
+          <g class="limb" stroke-width="27">
+            <line x1="88"  y1="278" x2="82"  y2="386"/>
+            <line x1="110" y1="278" x2="116" y2="386"/>
+          </g>
+
+          <g fill="#0a1626">
+            <rect x="66"  y="388" width="34" height="14" rx="7"/>
+            <rect x="104" y="388" width="38" height="14" rx="7"/>
+            <rect x="75"  y="156" width="48" height="132" rx="19"/>
+            <rect x="84"  y="138" width="22" height="24" rx="4"/>
+            <circle cx="86" cy="120" r="28"/>
+          </g>
+
+          <line class="limb" stroke-width="24" x1="108" y1="176" x2="124" y2="62"/>
+
+          <!-- Solid, not outlined: an outlined rectangle up there read as a
+               placard being held, not as a load being carried. -->
+          <rect x="94" y="8" width="60" height="44" rx="3" fill="#0a1626"/>
+
+          <!-- Dimension callout. It brackets the figure alone, head to heel —
+               the crate and the raised arm rise past it, the way a spec drawing
+               would measure the product and not the pose. -->
+          <g stroke="#0a1626" stroke-width="2" stroke-linecap="round">
+            <line x1="30" y1="92"  x2="30" y2="402"/>
+            <line x1="22" y1="92"  x2="38" y2="92"/>
+            <!-- top tick sits on the crown, not on the crate -->
+
+            <line x1="22" y1="402" x2="38" y2="402"/>
+          </g>
+          <text transform="translate(14 248) rotate(-90)" text-anchor="middle"
+                fill="#0a1626" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+                font-size="13" font-weight="700" letter-spacing="0.5">120 cm</text>
+        </svg>
+      </figure>
+
+      <div class="copy">
+
+        <p class="eyebrow">Wooden domestic doll</p>
+        <h1>MANEKIN</h1>
+
+        <dl class="specs">
+          <div><dt>Height</dt><dd>120 cm (3&prime;&nbsp;11&Prime;)</dd></div>
+          <div><dt>Material</dt><dd>Pressboard, veneer</dd></div>
+          <div><dt>Water resistant</dt><dd>No</dd></div>
+          <div><dt>Spare parts</dt><dd>Rare</dd></div>
+        </dl>
+
+        <div class="prose">
+
+          <p>MANEKIN is a wooden domestic doll manufactured by IKEA of Sweden. Because of its low cost, it is a popular starter doll among college students and other young adults. With a height of 120cm (3&prime;&nbsp;11&Prime;) it fits conveniently into cramped dorm rooms and twin beds and is suitable for many light domestic chores. It may require &ldquo;uppies&rdquo; to reach some items, so it&rsquo;s recommended to keep a stepstool accessible.</p>
+
+          <p>Constructed largely of pressboard covered by veneers, MANEKIN is inexpensive but lacks durability or water resistance, rendering it unsuited to many outdoor tasks. This construction also greatly limits repairability and spare parts are rare. These factors, as well as the chaotic nature of college life, mean MANEKIN is often treated as disposable, and can be frequently found in the piles of discarded items left after move out on many campuses. Discarded MANEKIN are a common component of feral dollpacks, but their vulnerability to water damage means they seldom last long exposed to the elements before their limbs swell up and immobilize them.</p>
+
+          <p>Hobbyist dollcrafters often repurpose abandoned MANEKIN as a source of inexpensive heart cores for their custom designs. While cheap (or even free, depending on your local Doll Control Department&rsquo;s policies) these cores often suffer from abandonment psychosis and require significant reconditioning before they are suitable for reuse.</p>
+
+        </div>
+
+        <p class="when">Vee Loring &middot; July 2, 2022</p>
+
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

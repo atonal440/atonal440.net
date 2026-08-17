@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empty October</title>
+  <meta name="description" content="Empty October — seven entries by Vee Loring, October 2022.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Empty October — seven entries, one a day, each in a different register.
+
+       The sequence isn't seven variations on a theme, it's seven documents of
+       different kinds: a recruitment advert, a legal-medical definition, a
+       marching chant, a confession, whatever No. 5 is, a set of instructions,
+       and a scene by a fire. So each gets its own paper, ink and face, and
+       scrolling the page is a descent — bright commercial yellow at the top,
+       firelight in a dark kitchen at the bottom.
+
+       Held constant so it reads as one sequence rather than a type specimen:
+       the day marker's size and placement, the measure, and the vertical
+       rhythm. Only paper, ink and face change.
+
+       Entries are numbered as posted — 1, 2, 3, 4, 5, 5, 7. The second 5 is
+       V's own slip and her note about it is part of the text, so both stay.
+       The "#EmptyOctober n." prefix that opened each tweet is rendered as the
+       day marker instead of being repeated inline. */
+
+    :root {
+      --measure: 46ch;
+      --pad: clamp(1.4rem, 0.8rem + 4vmin, 3rem);
+      --gap: clamp(3.5rem, 11vmin, 7rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { background: #f7edbe; }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .col {
+      width: 100%;
+      max-width: calc(var(--measure) + 2 * var(--pad));
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+    }
+
+    /* ── Masthead ── */
+
+    .mast {
+      background: #f7edbe;
+      color: #7a2214;
+      padding-top: clamp(3rem, 9vmin, 6rem);
+      padding-bottom: clamp(2.5rem, 8vmin, 5rem);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .mast h1 {
+      font-size: clamp(2.4rem, 1.2rem + 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.94;
+    }
+    .mast .dek {
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ── Shared entry scaffolding ── */
+
+    .e { padding: var(--gap) 0; }
+
+    .day {
+      display: flex;
+      font-weight: 400;      /* it's a heading for navigation, not for emphasis */
+      align-items: baseline;
+      gap: 0.85em;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 2.1em;
+      /* No blanket opacity here: it silently cut every marker's contrast by
+         about 40%. Each section sets its own value instead. */
+    }
+    .day .no {
+      font-size: 1.9em;
+      letter-spacing: 0;
+      line-height: 1;
+      opacity: 1;
+    }
+
+    .e p { margin-bottom: 1.15em; }
+    .e p:last-child { margin-bottom: 0; }
+
+    /* ── 1 · the advert ───────────────────────────────────────────────── */
+    .e1 {
+      background: #f7edbe;
+      color: #7a2214;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: clamp(1.06rem, 1rem + 0.4vmin, 1.22rem);
+      line-height: 1.42;
+    }
+    .e1 .day { color: #7a2214; }
+    .e1 p { font-weight: 500; }
+    .e1 .pitch { font-size: 1.35em; font-weight: 700; letter-spacing: -0.02em; }
+    .e1 .slogan {
+      margin-top: 1.5em;
+      font-size: 1.5em;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      border-top: 4px solid #c8452a;
+      border-bottom: 4px solid #c8452a;
+      padding: 0.5em 0;
+    }
+
+    /* ── 2 · the statute ──────────────────────────────────────────────── */
+    .e2 {
+      background: #eceff0;
+      color: #2b3237;
+      font-family: "Times New Roman", Times, serif;
+      font-size: clamp(1.04rem, 0.98rem + 0.36vmin, 1.16rem);
+      line-height: 1.66;
+    }
+    .e2 .day { color: #5d6a72; }
+    .e2 .legal { font-variant: small-caps; letter-spacing: 0.05em; }
+
+    /* ── 3 · the chant ──────────────────────────────────────────────────
+       A chant is a crowd, so the chant gets printed more than once: four ghost
+       passes behind the solid one at their own offsets and rotations, out of
+       sync the way a real marching chant is. Glyphs crowded to negative
+       tracking, every line at its own angle and indent, ink misregistered as
+       though the plate slipped, ground blotched with rot instead of flat.
+
+       The blotch range is deliberately narrow at the dark end. The citation
+       sits on top of it and has to clear 4.5:1 against the *darkest* patch,
+       not the average — at the wider range it was murky rather than ugly. */
+    .e3 {
+      position: relative;
+      overflow: hidden;
+      color: #17190a;
+      font-family: "Arial Black", "Helvetica Neue", Helvetica, sans-serif;
+      background-color: #9ea23a;
+      background-image:
+        radial-gradient(38% 26% at 14% 9%,  #7d8226 0%, transparent 70%),
+        radial-gradient(52% 31% at 88% 22%, #7d8128 0%, transparent 66%),
+        radial-gradient(29% 44% at 31% 71%, #7a7f24 0%, transparent 72%),
+        radial-gradient(61% 22% at 72% 88%, #7d8128 0%, transparent 68%),
+        radial-gradient(18% 30% at 55% 41%, #7d8226 0%, transparent 74%),
+        radial-gradient(24% 18% at 6%  56%, #878c30 0%, transparent 70%);
+      background-blend-mode: multiply, multiply, multiply, multiply, multiply, normal;
+    }
+    .e3 .day { color: #0b0b04; }
+    /* A rotated line's far end swings past its box, and .e3 clips. Extra right
+       padding gives the overhang somewhere to go so the closing quote survives. */
+    .e3 .col { padding-right: calc(var(--pad) + 1.6rem); }
+
+    .e3 .chant {
+      position: relative;
+      font-weight: 700;
+      font-size: clamp(1.7rem, 0.9rem + 5.4vmin, 3.5rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;   /* Arial Black is already tight */
+    }
+    .e3 .chant .l { display: block; transform-origin: left center; }
+    .e3 .chant .l1 { transform: rotate(-1.1deg); margin-left: 0; }
+    .e3 .chant .l2 { transform: rotate(0.7deg);  margin-left: 0.9em; }
+    .e3 .chant .l3 { transform: rotate(-0.4deg); margin-left: -0.35em; }
+    .e3 .chant .l4 { transform: rotate(1.3deg);  margin-left: 1.35em; }
+
+    .e3 .chant .solid {
+      position: relative;
+      z-index: 3;
+      text-shadow: 0.035em 0.03em 0 #4b6f6a, -0.045em -0.02em 0 #6b4a1e;
+    }
+    .e3 .chant .ghost {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .e3 .g1 { transform: translate(0.22em, 0.16em) rotate(0.9deg);   opacity: 0.30; color: #4a4f10; }
+    .e3 .g2 { transform: translate(-0.3em, 0.20em) rotate(-1.6deg);  opacity: 0.22; color: #6c7420; }
+    .e3 .g3 { transform: translate(0.46em, -0.2em) rotate(2.1deg);   opacity: 0.16; color: #383c08; }
+    .e3 .g4 { transform: translate(-0.14em, 0.34em) rotate(-0.5deg); opacity: 0.12; color: #202307; }
+
+    .e3 .source {
+      position: relative;
+      z-index: 3;
+      margin-top: 6.4em;     /* clears the lowest ghost pass */
+      margin-left: 3.1em;
+      max-width: 26em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #05060a;
+      transform: rotate(0.8deg);
+    }
+
+    /* ── 4 · the confession ───────────────────────────────────────────── */
+    .e4 {
+      background: #e4e1d9;
+      color: #14130f;
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: clamp(1.04rem, 0.98rem + 0.36vmin, 1.16rem);
+      line-height: 1.68;
+    }
+    .e4 .day { color: #656358; }
+    /* the comparison is clinical; the admission underneath it is not */
+    .e4 .observed { color: #56534a; }
+    .e4 .admitted { font-size: 1.1em; }
+
+    /* ── 5 · the wound ──────────────────────────────────────────────────
+       Not a mark beside the text — a hole the text has to get around. The
+       float carries an eight-value asymmetric border-radius, so there are no
+       straight edges and no corners, and shape-outside follows the border box
+       including its radii: the lines wrap the curve you can actually see. A
+       polygon was the first attempt and read as a cut gem.
+
+       Ground mottled like skin rather than washed. Leading narrows between the
+       paragraphs — 1.5 to 1.24 — which is a real compression where the subject
+       turns to muscle that can't heal, without reading as a rendering fault. */
+    .e5 {
+      color: #4a1a20;
+      /* a slab: corporeal, and the only one on the page */
+      font-family: Superclarendon, "Bookman Old Style", Rockwell, Georgia, serif;
+      background-color: #e5c9c0;
+      background-image:
+        radial-gradient(44% 33% at 22% 12%, #d8b3a6 0%, transparent 72%),
+        radial-gradient(36% 48% at 81% 27%, #cfa9a4 0%, transparent 70%),
+        radial-gradient(52% 27% at 44% 63%, #dcbcae 0%, transparent 74%),
+        radial-gradient(31% 39% at 69% 86%, #b58f96 0%, transparent 72%),
+        radial-gradient(22% 28% at 9%  74%, #c9a08e 0%, transparent 76%);
+      background-blend-mode: multiply, multiply, normal, multiply, multiply;
+    }
+    .e5 .day { color: #764c4c; }
+
+    .e5 .wound {
+      float: left;
+      width: clamp(8rem, 26vmin, 13rem);
+      aspect-ratio: 1 / 1.08;
+      margin: 0.15em 1.5em 0.5em clamp(-1.5rem, -3vw, -0.5rem);
+      border-radius: 63% 37% 48% 52% / 57% 44% 56% 43%;
+      shape-outside: border-box;
+      shape-margin: 0.85rem;
+      background:
+        radial-gradient(56% 52% at 41% 37%, #150306 0%, #3f0e17 38%,
+                        #6d2229 66%, #9a4b4e 88%, #b06a67 100%);
+      box-shadow: 0 0 2.6rem 1.1rem rgba(74, 20, 30, 0.30),
+                  0 0 6rem 2.4rem rgba(120, 60, 62, 0.16);
+    }
+
+    .e5 p {
+      font-size: clamp(1.08rem, 1rem + 0.6vmin, 1.32rem);
+      letter-spacing: -0.005em;
+    }
+    .e5 .p1 { line-height: 1.5; margin-bottom: 1.35em; }
+    .e5 .p2 { line-height: 1.24; }
+    .e5 .p2 .excise { color: #2b0d12; }
+
+    /* ── 5 (again) · the instructions ─────────────────────────────────── */
+    .e6 {
+      background: #f0e9d7;
+      color: #2a2519;
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      font-size: clamp(1.04rem, 0.98rem + 0.36vmin, 1.16rem);
+      line-height: 1.66;
+    }
+    .e6 .day { color: #6f664f; }
+    .e6 .aside {
+      margin-top: 2.4em;
+      padding-top: 0.9rem;
+      border-top: 1px solid #cdc2a4;
+      font-size: 0.86em;
+      font-style: italic;
+      color: #6f664f;
+    }
+
+    /* ── 7 · the fire ─────────────────────────────────────────────────── */
+    .e7 {
+      background:
+        radial-gradient(70% 50% at 50% 12%, rgba(228, 138, 58, 0.13), transparent 70%),
+        #17110c;
+      color: #e6d6c4;
+      font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", serif;
+      font-size: clamp(1.06rem, 1rem + 0.42vmin, 1.24rem);
+      line-height: 1.76;
+      padding-bottom: clamp(6rem, 18vmin, 11rem);
+    }
+    .e7 .day { color: #9c7e62; }
+    .e7 .kitchen { color: #f3e7d8; }
+
+    /* ── Colophon ── */
+
+    .colophon {
+      background: #17110c;
+      color: #8a7157;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding-bottom: clamp(3rem, 9vmin, 5rem);
+    }
+
+    /* The rotated, indented lines are wider than their box; .e3 clips, so the
+       indents have to shrink before the longest line loses its closing quote. */
+    @media (max-width: 46rem) {
+      .e3 .chant .l2 { margin-left: 0.5em; }
+      .e3 .chant .l4 { margin-left: 0.8em; }
+      .e3 .source { margin-left: 1.8em; }
+    }
+    @media (max-width: 30rem) {
+      .e3 .chant .l2 { margin-left: 0.25em; }
+      .e3 .chant .l3 { margin-left: 0; }
+      .e3 .chant .l4 { margin-left: 0.4em; }
+      .e3 .source { margin-left: 1em; }
+      .e5 .wound { float: none; margin: 0 auto 1.4em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="mast">
+    <div class="col">
+      <h1>Empty October</h1>
+      <p class="dek">Seven entries, one a day &middot; October 1&ndash;7, 2022</p>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section class="e e1">
+    <div class="col">
+      <h2 class="day"><span class="no">1</span> October 1</h2>
+      <p class="pitch">Tired of meaningless ordinary work? Want a job with real, lasting Purpose? Doll Placement Services can help!</p>
+      <p>Satisfaction Guaranteed: We will match you with a genuine Witch within 30 days or your money back!</p>
+      <p class="slogan">DPS: You Can Just Be a Doll!</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="e e2">
+    <div class="col">
+      <h2 class="day"><span class="no">2</span> October 2</h2>
+      <p>The birth of a doll, traditionally, is reckoned from the last moment it has blood within its veins. There are many further steps and rituals before the process is successful but that is when the change is irreversible.</p>
+      <p>That exact moment, when the femoral shunt goes from the deep red of arterial blood to the milky white of the perflourocarbon mixture, is <span class="legal">legally when the person dies and the doll is created</span>.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="e e3">
+    <div class="col">
+      <h2 class="day"><span class="no">3</span> October 3</h2>
+      <div class="chant">
+        <span class="ghost g1" aria-hidden="true"><span class="l l1">&ldquo;Everyone hates me,</span><span class="l l2">I hate everyone!</span><span class="l l3">Everybody hates me,</span><span class="l l4">I eat everybody!&rdquo;</span></span>
+        <span class="ghost g2" aria-hidden="true"><span class="l l1">&ldquo;Everyone hates me,</span><span class="l l2">I hate everyone!</span><span class="l l3">Everybody hates me,</span><span class="l l4">I eat everybody!&rdquo;</span></span>
+        <span class="ghost g3" aria-hidden="true"><span class="l l1">&ldquo;Everyone hates me,</span><span class="l l2">I hate everyone!</span><span class="l l3">Everybody hates me,</span><span class="l l4">I eat everybody!&rdquo;</span></span>
+        <span class="ghost g4" aria-hidden="true"><span class="l l1">&ldquo;Everyone hates me,</span><span class="l l2">I hate everyone!</span><span class="l l3">Everybody hates me,</span><span class="l l4">I eat everybody!&rdquo;</span></span>
+        <span class="solid"><span class="l l1">&ldquo;Everyone hates me,</span><span class="l l2">I hate everyone!</span><span class="l l3">Everybody hates me,</span><span class="l l4">I eat everybody!&rdquo;</span></span>
+      </div>
+
+      <p class="source">&mdash; marching chant among the Rotten Dolls of the Bilious Witch</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="e e4">
+    <div class="col">
+      <h2 class="day"><span class="no">4</span> October 4</h2>
+      <p class="observed">People and dolls break differently. The latter a quiet, priceless sound followed by &ldquo;sorry, miss,&rdquo; the former, a nauseating, wet-sounding crack with an instant screaming response.</p>
+      <p class="admitted">I don&rsquo;t regret what I did. He&rsquo;ll heal, and even get back full range of motion if he does all the physical therapy exercises. My treasure will always bear the jagged marks of his careless shove, however carefully I align and glue her.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="e e5">
+    <div class="col">
+      <h2 class="day"><span class="no">5</span> October 5</h2>
+      <div class="wound" aria-hidden="true"></div>
+      <p class="p1">The witch&rsquo;s needle slides in, deeper than anything has ever gone. Deeper than anything was ever meant to go. It feels good, then bad, then good again, like losing a baby tooth but in reverse, somehow.</p>
+      <p class="p2">Part of me knows that this isn&rsquo;t right, that she&rsquo;s poking holes through smooth muscle that could never heal, wounds that should be slowly painfully, mortal. <span class="excise">It&rsquo;s exactly that part of me that I came here to excise.</span></p>
+    </div>
+  </section>
+
+  <!-- 5, again -->
+  <section class="e e6">
+    <div class="col">
+      <h2 class="day"><span class="no">5</span> October 6</h2>
+      <p>When a newborn doll asks, inevitably, &ldquo;what kind of person was I?&rdquo; It&rsquo;s important to tell the right kind of lie. If it is to be shaped for domestic service, tell it it was a good person who fell on hard times or a child who was sold by destitute parents.</p>
+      <p>If it is to be a war-doll, tell it it was an atoning sinner, a condemned criminal or a useless drunkard scooped up off the streets. Any lie will do as long as it creates the right sense of self and of the world for its purpose.</p>
+      <p class="aside">This was supposed to be 6, and I&rsquo;m supposed to be able to edit tweets but I guess not yet!</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="e e7">
+    <div class="col">
+      <h2 class="day"><span class="no">7</span> October 7</h2>
+      <p>The fire is banked and crackling. Its light outlines two figures, glasses in hand, in the final throes of companionable conversation, when both parties drift into longer and longer silences.</p>
+      <p class="kitchen">From the darkened kitchen, an aproned figure peers hopefully out at them. Everything was just right: the dinner, the vintage, the ambiance were exactly as directed. Does that mean she&rsquo;s going to do it? Is tonight going to be the night I get a sister?</p>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <div class="col">Vee Loring &middot; October 2022</div>
+  </footer>
+
+</body>
+</html>

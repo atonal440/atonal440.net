@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Her</title>
+  <meta name="description" content="Her — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Her
+
+       The other pages in this series are dark. This one is pale, flat and
+       overexposed, because the thing the narrator is walking toward is not
+       danger — it's quiet. He says it outright: the city was loud and bright
+       and people were pushy, and the silence will feel even better. A dark
+       page would make this a horror story. It isn't one, or at least he
+       doesn't think it is, and the page renders what he thinks.
+
+       So: an overcast, dust-colored ground, wide still margins, nothing that
+       moves. The peace he's after is allowed to look like peace. That is more
+       unsettling than any framing device would be, and it's honest to a piece
+       written from inside the romance rather than above it.
+
+       Two things the page deliberately does NOT do. It does not dim the type
+       as the story goes — the ending would then perform his erasure and quietly
+       agree that the silence is an improvement. And it does not name or depict
+       her beyond the title. She is absent from her own story; the only version
+       of her here is the one he built. */
+
+    :root {
+      --serif: Cochin, Garamond, "Adobe Garamond Pro", "Palatino Linotype",
+               Palatino, "Times New Roman", serif;
+
+      --ground:  #eae6df;
+      --ink:     #34302d;
+      --muted:   #6b655d;
+      --her:     #ddd8d0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--ground); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      /* Barely a gradient. Flat overcast light, not dusk — dusk would be
+         atmosphere, and atmosphere would be a kind of endorsement. */
+      background: linear-gradient(180deg, #edeae4 0%, var(--ground) 55%, #e5e0d8 100%);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      font-size: clamp(1.02rem, 0.95rem + 0.34vmin, 1.16rem);
+      --pad: clamp(1.35rem, 0.8rem + 4vmin, 3rem);
+      width: 100%;
+      max-width: calc(48ch + 2 * var(--pad));
+      margin: 0 auto;
+      padding: clamp(3rem, 8vmin, 6rem) var(--pad) clamp(7rem, 20vmin, 14rem);
+    }
+
+    /* She presides over the page and is barely on it: the largest thing here
+       and the faintest. He never gets closer to her than this. */
+    h1 {
+      font-size: clamp(4.5rem, 2rem + 19vmin, 11rem);
+      font-weight: 400;
+      line-height: 0.82;
+      letter-spacing: -0.02em;
+      color: var(--her);
+      margin-bottom: 0.7rem;
+    }
+
+    .when {
+      font-size: 0.76em;
+      letter-spacing: 0.13em;
+      color: var(--muted);
+      margin-bottom: clamp(1.4rem, 3.5vmin, 2.6rem);
+    }
+
+    p {
+      font-size: 1em;
+      line-height: 1.82;
+      margin-bottom: 1.9em;
+    }
+
+    /* The piece's own tic: four places where he stops just short of the word
+       and then says it anyway. Giving each ellipsis a little extra room makes
+       the flinch take up time instead of passing as punctuation. The real
+       space character stays in the markup — the padding only widens it, so
+       copied text still carries the author's spacing. */
+    .beat { padding-right: 0.16em; }
+
+    /* Backstory ends, the plan begins. */
+    .turn { margin-top: 3.2em; }
+
+    .last {
+      margin-top: 3.6em;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <h1>Her</h1>
+    <p class="when">Vee Loring &middot; May 31, 2023</p>
+
+    <p>She lives on the far edge of town. She doesn&rsquo;t like neighbors and neighbors wouldn&rsquo;t like her. When she does do her shopping, she&rsquo;s not one for idle questions. The kind of mind firm enough to bend reality to her will doesn&rsquo;t slide nimbly through small talk.</p>
+
+    <p>This creates a bit of a barrier to securing an introduction. I&rsquo;d say I&rsquo;m not a total stranger, but you can&rsquo;t just knock on someone&rsquo;s door and say hi, I know we&rsquo;ve never talked but please take my will and make me your plaything.</p>
+
+    <p>We have a few friends in common from high school, though, when we were both acne-scarred weirdos on opposite edges of the social scene. I went off on a scholarship, while she stayed here and worked on her<span class="beat">&hellip;</span> talent.</p>
+
+    <p>Everyone knew she had it but it didn&rsquo;t look like the &ldquo;gifted kid&rdquo; stereotype they stuck on me, so they mostly tried to ignore it. That&rsquo;s how she liked it, and she mostly got what she wanted.</p>
+
+    <p>It wasn&rsquo;t until college that I realized how strange it was, how many stories from my childhood left friends there open-mouthed. Yes, she never took the bus again after that one gum incident in third grade, she just walked<span class="beat">&hellip;</span> how many miles?</p>
+
+    <p>It just took a bit of time in the stacks to understand what a rare and dangerous thing we had been living with. I suddenly understood why no one came back after college: it wasn&rsquo;t just that it&rsquo;s a depressing cowtown.</p>
+
+    <p>It had its advantages, though: everything was so loud and bright in the city, I could barely even hear myself think. And people were so<span class="beat">&hellip;</span> pushy. She and I had very similar tastes, I began to understand. Except I couldn&rsquo;t do what she could.</p>
+
+    <p>I toughed it out through my degree: my momma didn&rsquo;t raise me to be a quitter. I learned a lot of very useful things, too, tips and tricks from the history of people like her. It usually doesn&rsquo;t end well, but it&rsquo;s usually much more<span class="beat">&hellip;</span> malignant.</p>
+
+    <p class="turn">Now comes the tricky part. I honestly don&rsquo;t know how she&rsquo;ll react, what she knows about herself or things like her. Has she ever even heard about zombies, or thralls, or dolls, as various people call them?</p>
+
+    <p>I think it&rsquo;s best to just be completely open, and to simply throw myself on her mercy. She&rsquo;ll get what she wants anyway, she always does. The quiet here feels so good, and the silence will feel even better.</p>
+
+    <p class="last">I just hope I&rsquo;m useful in return.</p>
+
+  </div>
+
+</body>
+</html>

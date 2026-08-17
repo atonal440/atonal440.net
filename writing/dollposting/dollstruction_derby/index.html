@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dollstruction Derby</title>
+  <meta name="description" content="Dollstruction Derby — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Dollstruction Derby
+
+       Two registers, hard-cut. Up top the show: Impact, screaming yellow,
+       misregistered red and black offsets like a flyer run cheap, leaning
+       forward. Below it the shed: mono, small, grey, matter-of-fact, a guy
+       telling you he files through the bolts so the limbs come off cheaply.
+
+       The page is the poster and the back of the poster. Nothing blends the
+       two — a hazard strip and then you're behind the barrier, and the voice
+       that was selling you the match is the same voice explaining the trick.
+       That gap is the piece, so the design refuses to soften it.
+
+       No invented copy anywhere: no SUNDAY SUNDAY SUNDAY, no ticket price, no
+       card. The title is the entire marquee. */
+
+    :root {
+      --poster: Impact, Haettenschweiler, "Franklin Gothic Heavy",
+                "Arial Black", "Arial Narrow Bold", sans-serif;
+      --mono:   ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                "Liberation Mono", monospace;
+
+      --night: #121013;
+      --hot:   #ffd400;
+      --red:   #e2181f;
+      --paper: #e9e6df;
+      --ink:   #2a2724;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--paper); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── The show ── */
+
+    .marquee {
+      background: var(--night);
+      padding: clamp(2.75rem, 10vmin, 6rem) clamp(1rem, 4vw, 3rem);
+      text-align: center;
+      overflow: hidden; /* the skew must not push a scrollbar */
+    }
+
+    h1 {
+      font-family: var(--poster);
+      font-weight: 400;
+      font-size: clamp(2.1rem, 0.8rem + 9.5vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.015em;
+      text-transform: uppercase; /* presentation only — the markup keeps
+                                    the author's own casing for copy/paste */
+      color: var(--hot);
+      transform: skewX(-7deg);
+      /* Offsets in em so the misregistration scales with the type. */
+      text-shadow:
+        0.042em 0.042em 0 var(--red),
+        0.084em 0.084em 0 #000;
+    }
+
+    /* A date belongs on a flyer, so this one gets to stay in the marquee. */
+    .when {
+      margin-top: clamp(0.9rem, 2.5vmin, 1.5rem);
+      font-family: var(--poster);
+      font-size: clamp(0.82rem, 0.74rem + 0.5vmin, 1.05rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--hot);
+    }
+
+    /* The barrier. You are now behind it. */
+    .hazard {
+      height: clamp(10px, 2vmin, 16px);
+      background: repeating-linear-gradient(
+        -45deg, var(--hot) 0 14px, var(--night) 14px 28px);
+    }
+
+    /* ── The shed ── */
+
+    .shed {
+      font-family: var(--mono);
+      font-size: clamp(0.88rem, 0.83rem + 0.28vmin, 0.98rem);
+      --pad: clamp(1.35rem, 0.8rem + 4vmin, 3rem);
+      width: 100%;
+      max-width: calc(56ch + 2 * var(--pad));
+      margin: 0 auto;
+      padding: clamp(3rem, 10vmin, 6rem) var(--pad) clamp(6rem, 18vmin, 11rem);
+    }
+
+    .shed p {
+      font-size: 1em;
+      line-height: 1.8;
+      margin-bottom: 1.8em;
+    }
+    .shed p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <header class="marquee">
+    <h1>Dollstruction Derby</h1>
+    <p class="when">Vee Loring &middot; November 27, 2022</p>
+  </header>
+
+  <div class="hazard" aria-hidden="true"></div>
+
+  <main class="shed">
+
+    <p>People think the dollstruction derby is fake, kayfabe, that the punches are pulled and the throws are rehearsed before the match. They&rsquo;re wrong; we have no idea what&rsquo;s gonna happen before the dolls get in the ring.</p>
+
+    <p>Where we do try to shape things is in the maintenance shed: replacing metal gears with nylon and filing through critical bolts so they will fail before an arm or a leg can be damaged. People love to see limbs fly off and eyes pop out, but you have to keep repairs affordable.</p>
+
+  </main>
+
+</body>
+</html>

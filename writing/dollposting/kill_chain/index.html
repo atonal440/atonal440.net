@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kill Chain</title>
+  <meta name="description" content="Kill Chain — a short story by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Kill Chain
+       The page runs cold to warm, top to bottom: the blue-black of the
+       frontline sky at the title, body heat by the last line. Every color
+       that carries the arc is mixed from --cold and --warm against a
+       per-paragraph --t (0 at the accords, 1 at the coda). */
+
+    :root {
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --mono:  ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono",
+               Consolas, "Liberation Mono", monospace;
+
+      /* Trace + rule colors: the two ends of the gradient. */
+      --cold: #5f83ab;
+      --warm: #d98f74;
+
+      /* Prose colors: same journey, held to a readable range. */
+      --ink-cold: #b3c1d1;
+      --ink-warm: #ece0d4;
+
+      --snow:  #dde5ee;
+      --faint: #56617180;
+
+      --t: 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: #080b12; }
+
+    body {
+      min-height: 100vh;
+      /* On <body>, with html carrying its own background, this paints the
+         body box — so the gradient spans the whole story rather than the
+         viewport. That's the point: the arc is the document's, not the screen's. */
+      background:
+        radial-gradient(130% 70% at 50% -8%, #131c2e 0%, transparent 58%),
+        linear-gradient(180deg, #080b12 0%, #0a0d14 45%, #100f11 78%, #16110e 100%);
+      font-family: var(--serif);
+      color: var(--ink-cold);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 6rem 1.75rem 9rem;
+    }
+
+    /* ── Title ── */
+
+    header { margin-bottom: 5.5rem; }
+
+    h1 {
+      font-family: var(--mono);
+      font-size: clamp(1.6rem, 6.5vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.34em;
+      text-indent: 0.34em; /* recover the trailing letterspace */
+      text-transform: uppercase;
+      color: var(--snow);
+      line-height: 1.25;
+    }
+
+    .byline {
+      margin-top: 1.6rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6f7d90;
+    }
+
+
+    /* ── The trace ── */
+
+    .chain {
+      position: relative;
+      padding-left: 2.75rem;
+    }
+
+    /* The line itself. Sits under the ticks, warming as it descends. */
+    .chain::before {
+      content: "";
+      position: absolute;
+      left: 0.6rem;
+      top: 0.55em;
+      bottom: 1.3em;
+      width: 1px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        color-mix(in oklab, var(--cold) 55%, transparent) 4%,
+        color-mix(in oklab, var(--cold) 40%, transparent) 45%,
+        color-mix(in oklab, var(--warm) 45%, transparent) 88%,
+        transparent 100%);
+    }
+
+    .chain > * { position: relative; }
+
+    .chain p {
+      font-size: 1.075rem;
+      line-height: 1.72;
+      margin-bottom: 2.1rem;
+      color: color-mix(in oklab, var(--ink-warm) calc(var(--t) * 100%), var(--ink-cold));
+    }
+
+    /* One tick per beat — the thread's original rhythm, kept.
+       --rail-x is the trace's x-position expressed relative to the paragraph
+       box; the mobile breakpoint moves the rail by changing only this. */
+    .chain p { --rail-x: -2.15rem; }
+
+    .chain p::before {
+      content: "";
+      position: absolute;
+      left: var(--rail-x);
+      top: 0.72em;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: color-mix(in oklab, var(--warm) calc(var(--t) * 100%), var(--cold));
+      box-shadow: 0 0 calc(var(--t) * 9px)
+                  color-mix(in oklab, var(--warm) calc(var(--t) * 55%), transparent);
+    }
+
+    /* "latency anomalies, dropped packets" — the trace stutters here. */
+    .chain p.drop::before {
+      background: transparent;
+      border: 1px solid color-mix(in oklab, var(--warm) calc(var(--t) * 100%), var(--cold));
+      box-shadow: none;
+    }
+    /* The lost packet sits off-axis, out in the margin — it has to read as
+       having fallen away from the trace, not as a stray tick sitting on it. */
+    .chain p.drop::after {
+      content: "";
+      position: absolute;
+      left: calc(var(--rail-x) - 6px);
+      top: 2.15em;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: color-mix(in oklab, var(--warm) 40%, transparent);
+    }
+
+    /* ── Breaks ── */
+
+    hr {
+      border: none;
+      height: 1px;
+      width: 7rem;
+      margin: 3.6rem 0 1.15rem;
+      background: linear-gradient(90deg,
+        color-mix(in oklab, var(--warm) calc(var(--t) * 100%), var(--cold)) 0%,
+        transparent 100%);
+      opacity: 0.5;
+    }
+
+    /* The rule isn't a section break — it's a two-month gap. The maintenance
+       half of this went up in August. A div, not a <p>, so the trace doesn't
+       give the date a tick of its own. */
+    .seam {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      color: #54606f;
+      margin-bottom: 3.2rem;
+    }
+
+    /* ── The last beat ──
+       No coda, no flourish: the story just arrives at body temperature and
+       stops. A breath of extra air above it, and the one tick on the page
+       that's fully warm. */
+
+    .last {
+      margin-top: 0.7rem;
+      margin-bottom: 0;
+    }
+    .last::before {
+      width: 6px;
+      height: 6px;
+      background: var(--warm);
+      box-shadow: 0 0 12px color-mix(in oklab, var(--warm) 60%, transparent);
+    }
+
+    @media (max-width: 34rem) {
+      .page { padding: 4rem 1.25rem 6rem; }
+      header { margin-bottom: 4rem; }
+      .chain { padding-left: 1.9rem; }
+      .chain::before { left: 0.3rem; }
+      .chain p { --rail-x: -1.6rem; font-size: 1.02rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <header>
+      <h1>Kill Chain</h1>
+      <p class="byline">Vee Loring &middot; June 9, 2022</p>
+    </header>
+
+    <div class="chain">
+
+      <p style="--t: 0">Since the New Delhi Accords prohibit fully autonomous weapons systems, combat dolls are, technically speaking, human. Don't try telling one that, though, they don't like it. They just want to be called by their rank and serial number.</p>
+
+      <p style="--t: .04">In the training manuals it says that during their rotations out of combat you should use their real name and the pronouns they used before they joined the unit. It never sticks, though. They just look right through you and say &ldquo;and who is that, sir?&rdquo;</p>
+
+      <p style="--t: .08">A mess hall full of dolls who won't even acknowledge that you exist gets to you pretty quickly: they may not be human but you are. This is what they're like even when they're not pumped full of neoamphatamines and hooked into Battlespace Awareness; we don't stand a chance.</p>
+
+      <p style="--t: .12">They were supposed to disconnect from all that: one month up on the tibetan frontlines fighting the PLA drone swarms, networked to every air and space asset we have, one month down here to rest and debrief and reindividualize.</p>
+
+      <p style="--t: .17">They dont, though. The biting cold, and the blue-black sky, and seeing with the compound eye of hundreds of SBIRS sats down to the tiny warmth of your squad in the eternal snow&hellip; it does something to you. You don't feel comfortable with just two eyes anymore.</p>
+
+      <hr style="--t: .2">
+
+      <div class="seam">August 7, 2022</div>
+
+      <p style="--t: .23">A big part of the rotations down here is spent on my specialization, implant maintenance. It's why there are milspec MRIs now.</p>
+
+      <p style="--t: .28">The tiny, bacterium-deposited electrode filaments can self-heal to some degree but a concussion can screw things up, and even this kind of war is still full of concussions.</p>
+
+      <p style="--t: .33">Or the bacteria can overgrow their genetically targeted neurons, and have to be pruned back with targeted antibiotics. Biotech is the best nanotech but it can still be more of an art than a science.</p>
+
+      <p style="--t: .38">It's important to check over each doll's entire sensorium to ensure the haptic link they share stays low-noise. Phantom nerve pain is unpleasant and leads to decoherence, dolls unconsciously pulling away from the groupsense.</p>
+
+      <p style="--t: .43">The official way to do this is to move one soldier at a time onto a dummy network with telemetry analysis software for detecting faults. Worked fine in testing!</p>
+
+      <p style="--t: .48">Dolls have different needs though, and the physiological stress response to disconnection screwed everything up. Plus they hated it, and you don't want to be someone they hate, trust me.</p>
+
+      <p style="--t: .54">A compromise was found: we hacked together a version of the telemetry analysis tool that can run on a combat doll's implanted systems, and do the tests in pairs.</p>
+
+      <p style="--t: .61">This makes a tech's job easier: after I get the imaging done and load the firmware the dolls take turns conducting the sensorium test. It starts with simple proprioceptive testing, moving through a series of limb positions.</p>
+
+      <p style="--t: .7">Then it's on to nerve stimulation testing, the dolls taking turns touching each other lightly, firmly, with special cooled and heated rods, while I make sure every sensation is correctly transmitted. They don't really need my help, though.</p>
+
+      <p style="--t: .78">Linked up like this they can feel every part of what the other feels, far better than in the groupsense. The test procedure becomes a formality and the simple feedback of reaction and sensation takes over.</p>
+
+      <p style="--t: .86">When the testing gets to more&hellip; sensitive parts of their bodies things tend to slow down a bit. Slow down and, well, deviate from the script. There's no hesitation: when you know exactly what someone is feeling there's no need.</p>
+
+      <p class="drop" style="--t: .93">I try not to gawk too much, and keep my eyes on the telemetry. Sometimes, as the sensory data rates get higher towards a climax, there are latency anomalies, dropped packets that point to incipient hardware failures or software bugs.</p>
+
+      <p class="last" style="--t: 1">Combat is also a kind of sensory overload, and I want all my dolls to come back safe so they can do this again with each other.</p>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

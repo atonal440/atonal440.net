@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When a Witch Builds a Doll</title>
+  <meta name="description" content="When a Witch Builds a Doll — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* When a Witch Builds a Doll
+
+       The prose is attachment-parenting literature almost undisguised: skin
+       contact, imprinting, bonding, a breezy folk maxim, a warning about mills,
+       and then an actionable tip for calming a distressed charge. So the page is
+       a spread from that kind of book — a practical handbook, two-colour press,
+       slab serif for the furniture and a plain workhorse serif for the body.
+
+       Everything that carries the register is page furniture rather than added
+       prose: a running head, section numbers hanging in the margin, hairline
+       rules, a tinted callout, and a folio. The five paragraphs are verbatim and
+       in order, nothing extracted, nothing moved. The one maxim is marked in the
+       spot colour where it sits rather than being lifted into a box, so the
+       sentence stays inside its own paragraph.
+
+       No figure. This is a text about swaddling a head against your body and the
+       series has already established that depiction is the wrong instrument. */
+
+    :root {
+      --slab: Superclarendon, "Bookman Old Style", Rockwell, "Roboto Slab",
+              Georgia, serif;
+      --body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+
+      --paper: #f6f1e6;
+      --ink:   #272320;
+      --spot:  #a8492c;   /* the second ink on the press */
+      --rule:  #d3c8b2;
+      --tint:  #efe5d1;
+      --muted: #756c5c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--paper); }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .sheet {
+      font-size: clamp(1rem, 0.94rem + 0.32vmin, 1.1rem);
+      --pad: clamp(1.4rem, 0.9rem + 4vmin, 3.5rem);
+      --gutter: clamp(2.4rem, 1rem + 5vmin, 4.5rem);
+      width: 100%;
+      max-width: calc(58ch + var(--gutter) + 2 * var(--pad));
+      margin: 0 auto;
+      padding: clamp(2rem, 6vmin, 4rem) var(--pad) clamp(4rem, 12vmin, 7rem);
+    }
+
+    /* ── Running head ── */
+
+    .runhead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--slab);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--spot);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--spot);
+      margin-bottom: clamp(2.5rem, 7vmin, 4.5rem);
+    }
+    .runhead .folio { color: var(--muted); letter-spacing: 0.08em; }
+
+    h1 {
+      font-family: var(--slab);
+      font-size: clamp(1.55rem, 1.1rem + 2.2vmin, 2.4rem);
+      font-weight: 400;
+      line-height: 1.16;
+      letter-spacing: -0.01em;
+      margin-bottom: clamp(2rem, 6vmin, 3.25rem);
+    }
+
+    /* ── The numbered sections ──
+       Numerals hang in the gutter, which is the whole reason the page is set
+       asymmetrically. Below the breakpoint they sit above their paragraph. */
+
+    .section {
+      display: grid;
+      grid-template-columns: var(--gutter) minmax(0, 1fr);
+      column-gap: 0;
+      margin-bottom: 2.1em;
+    }
+    .section .n {
+      font-family: var(--slab);
+      font-size: 1.05em;
+      color: var(--spot);
+      line-height: 1.62;
+      padding-right: 1.1em;
+      text-align: right;
+      user-select: none;
+    }
+    .section p {
+      font-size: 1em;
+      line-height: 1.62;
+    }
+
+    /* The one folk maxim in the piece, marked where it stands rather than
+       pulled out of its paragraph. */
+    .maxim {
+      font-variant: small-caps;
+      letter-spacing: 0.04em;
+      color: var(--spot);
+    }
+
+    /* ── The practical note ──
+       The last paragraph is the only actionable instruction in the text, so it
+       gets the tinted box a handbook would give it. No label: the box says it. */
+    .section.note {
+      margin-top: 2.9em;
+      margin-bottom: 0;
+    }
+    .section.note p {
+      background: var(--tint);
+      border-left: 3px solid var(--spot);
+      padding: 1.15em 1.35em;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 2.6em 0 2.6em calc(var(--gutter));
+    }
+
+    .colophon {
+      margin-top: clamp(3rem, 9vmin, 5rem);
+      padding-top: 0.9rem;
+      border-top: 2px solid var(--spot);
+      font-family: var(--slab);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (max-width: 34rem) {
+      .section { grid-template-columns: 1fr; }
+      .section .n { text-align: left; padding: 0 0 0.15em 0; }
+      hr { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sheet">
+
+    <div class="runhead">
+      <span>Imprinting &amp; the New Doll</span>
+      <span class="folio">37</span>
+    </div>
+
+    <h1>When a Witch Builds a Doll</h1>
+
+    <div class="section">
+      <div class="n" aria-hidden="true">1</div>
+      <p>When a Witch builds a doll she builds the head first. In part because the head is the hardest, the most full of interlocking spells and clockwork. But also because part of building a doll is raising a doll.</p>
+    </div>
+
+    <div class="section">
+      <div class="n" aria-hidden="true">2</div>
+      <p>A good witch takes that head and swaddles it against her while she works, shows the doll-to-be how to make tea, how to hoe and weed the garden, where the linen cupboard is. The new doll soaks up this information with avid attention; what else can it do?</p>
+    </div>
+
+    <div class="section">
+      <div class="n" aria-hidden="true">3</div>
+      <p>The close, constant skin-to-porcelain contact also bonds the doll to its witch, so it will always obey and can never betray her. <span class="maxim">Imperfect Imprinting creates Defective Dolls, as they say!</span></p>
+    </div>
+
+    <hr>
+
+    <div class="section">
+      <div class="n" aria-hidden="true">4</div>
+      <p>Some unscrupulous witches will have their dolls make dolls, or do as little to imprint as possible, aiming for quantity over quality but they are shunned by polite society and for good reasons: doll mills are the number one source of feral dollpacks.</p>
+    </div>
+
+    <div class="section note">
+      <div class="n" aria-hidden="true">5</div>
+      <p>This is also why the best way to calm an agitated doll is to put its head in your lap: it&rsquo;s most soothing from its witch, of course, but it always reminds it of this time when nothing separated it from her.</p>
+    </div>
+
+    <div class="colophon">Vee Loring &middot; August 5, 2022</div>
+
+  </div>
+
+</body>
+</html>

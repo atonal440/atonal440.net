@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Life</title>
+  <meta name="description" content="College Life — by Vee Loring.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* College Life
+
+       The other pieces each wear a costume — a telemetry rig, a songbook, a
+       product listing. This one has none. It's a guy talking, and any borrowed
+       institutional frame would hand him an authority the piece is quietly
+       denying him. So: no costume, no ornament, no rules, no figures.
+
+       What the page has instead is a room. One warm lamp fixed to the viewport,
+       everything past it falling off into a warm dark, and a lot of empty
+       space that never fills up no matter how far you scroll — which is the
+       story's actual subject. He keeps buying dolls and the house stays big.
+
+       Deliberately no drawing of any kind. Every other page in this series
+       earned its image; this is the one where a depicted doll would be
+       unforgivable, because the piece holds the childlike register and the
+       question in paragraph two in the same room and refuses to resolve them.
+       Anything figurative would resolve it, in the worst available direction. */
+
+    :root {
+      --serif: Charter, "Bitstream Charter", Georgia, "Iowan Old Style",
+               "Times New Roman", serif;
+
+      --ground:   #0d0a09;
+      --ink:      #e2d8cd;
+      --ink-lit:  #f4ece0;
+      --muted:    #8a7d72;
+      --lamp:     255, 194, 122;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--ground); }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      background: linear-gradient(180deg, #100c0a 0%, var(--ground) 40%, #0a0807 100%);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* The lamp is fixed to the viewport, not to the document: the light stays
+       where it is and the story moves through it. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(58% 44% at 50% 26%,
+          rgba(var(--lamp), 0.115) 0%,
+          rgba(var(--lamp), 0.045) 42%,
+          transparent 72%);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+
+      /* One governing size; measure held near 62 characters at every scale. */
+      font-size: clamp(1rem, 0.93rem + 0.34vmin, 1.14rem);
+      --pad: clamp(1.35rem, 0.8rem + 4vmin, 3rem);
+      width: 100%;
+      max-width: calc(50ch + 2 * var(--pad));
+      margin: 0 auto;
+      padding: clamp(3.5rem, 9vmin, 7rem) var(--pad) clamp(6rem, 18vmin, 12rem);
+    }
+
+    h1 {
+      font-size: 0.76em;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+    }
+
+    .when {
+      font-size: 0.72em;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #827971;
+      margin-bottom: clamp(1.6rem, 4vmin, 2.6rem);
+    }
+
+    /* Oversized quotation marks top and bottom. Not ornament — a speech
+       marker. The page's whole claim is that this is talk rather than writing,
+       and the same curly glyphs already appear inside the text around the
+       things people say to him, so blowing them up to frame the piece puts him
+       in the same reported-speech register as everybody else in it.
+
+       They belong to the lamp, not to the type: same warm value, dimmed, so
+       they read as something the light is doing. */
+    .mark {
+      font-size: clamp(3.6rem, 2.2rem + 9vmin, 7rem);
+      line-height: 0.66;
+      text-align: center;
+      color: rgba(var(--lamp), 0.2);
+      user-select: none;
+    }
+    .mark-open  { margin-bottom: clamp(0.5rem, 1.6vmin, 1rem); }
+    .mark-close { margin-top: clamp(1.6rem, 4.5vmin, 2.8rem); }
+
+    p {
+      font-size: 1em;
+      /* Slow leading and wide paragraph gaps: he is talking, not writing, and
+         there are pauses in it. */
+      line-height: 1.85;
+      margin-bottom: 2.1em;
+    }
+
+    /* The one formal event in the piece: nine paragraphs of past tense, then
+       the last one turns to present. It gets the extra pause and the only lit
+       ink on the page — the lamp finding him where he ended up. */
+    .now {
+      color: var(--ink-lit);
+      margin-top: 3.4em;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <h1>College Life</h1>
+    <p class="when">Vee Loring &middot; January 7, 2023</p>
+
+    <div class="mark mark-open" aria-hidden="true">&ldquo;</div>
+
+    <p>I always brought a few dolls along with me to the house parties. It was kind of my calling card; better to be known as &ldquo;that weird guy with the dolls&rdquo; than &ldquo;that weird guy&rdquo; simpliciter. It was weird at first having little, perfectly mannered porcelain people at a rowdy frat party, but as the beer flowed it usually stopped mattering.</p>
+
+    <p>The question I inevitably got, once, from everyone, was &ldquo;do you fuck them&rdquo;. It came either right away, hushed in my ear, or half a dozen drinks in, loud for everyone to hear. I always said no, which was mostly true and helped reduce the awkwardness when someone made a pass, or got found with one in the bathroom.</p>
+
+    <p>I didn&rsquo;t mind, ultimately the question was a way of getting at &ldquo;why do you have this weird hobby&rdquo; and I don&rsquo;t really have a good answer for that. I got my first one at 13, from parents with more money than love, and it&rsquo;s just been a normal part of my life ever since.</p>
+
+    <p>Freshman year was awkward, at least that first semester with the housing crunch; I almost put the pair of dolls I had then in self-storage to lessen the weird looks my roommates were giving me. I just couldn&rsquo;t do it, though. My routine was just too dependent on waking up and having them next to me to keep me from falling back asleep.</p>
+
+    <p>It&rsquo;s only when I moved off campus that the whole thing kind of exploded into a full on lifestyle. I was supposed to find roommates to split this big old place with but no one really wanted to live with me; go figure. I gave both of my dolls their own bedrooms but that was even lonelier. I found myself just pacing the house, or turning the tv on just to have some background noise.</p>
+
+    <p>So I gave in and bought a few more: some newer models I&rsquo;d had my eye on for a couple years at that point, all soft-touch and composites, real state of the art, far more active than the ones I&rsquo;d had before. The exercise was good for me, I told myself, lose that freshman fifteen or whatever.</p>
+
+    <p>And then I started prowling the garage sales and the estate sales, scooping up any doll that its owner was trying to get rid of: wooden ball-jointed models, old plain porcelain dolls with half their fingers missing, stuff like that. The house filled up with the pitter-patter of little feet, I had all the projects I could ever want, it was great. So great I kinda stopped going to class.</p>
+
+    <p>My parents really didn&rsquo;t like that, but they had made the mistake of buying the house outright and deeding it to me, so I didn&rsquo;t have to worry too much about what they liked. I had what was left of my college fund and about a dozen dolls at this point and very little concern for what anyone else thought, so I would show up to the parties that acquaintances still on campus threw, just to get some beer and see how people reacted.</p>
+
+    <p>The dolls liked it too, as much as I could tell. They enjoy variety in their own way too, I think, especially the newer ones that haven&rsquo;t spent a decade in someone&rsquo;s attic yet. They were always up for drinking games, even though it meant a bath the next morning so they didn&rsquo;t smell like old beer or dried jungle juice.</p>
+
+    <p class="now">It&rsquo;s a pretty good life, all things considered. I can fix a doll and get refuge from feeling like a useless fuckup. I can go to a party and get refuge from feeling like a weird hermit. The money won&rsquo;t last forever, but what does? I&rsquo;ll figure that out when it happens.</p>
+
+    <div class="mark mark-close" aria-hidden="true">&rdquo;</div>
+
+  </div>
+
+</body>
+</html>
